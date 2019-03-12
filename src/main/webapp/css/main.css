@@ -1,0 +1,29 @@
+body {
+    padding-top: 70px;
+    background-image: url("../img/bg1.png");
+    background-position: top center;
+    -webkit-background-size: auto, 100%;
+    background-size: auto, 100%;
+}
+
+.login {
+    margin-top: 6%;
+}
+
+#tishi {
+    color: red;
+}
+
+textarea {
+    resize: vertical;
+}
+
+@-moz-document url-prefix() {
+    fieldset {
+        display: table-cell;
+    }
+}
+
+.table {
+    table-layout: fixed;
+}

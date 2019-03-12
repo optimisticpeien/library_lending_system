@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--加载数据库配置文件-->
+    <bean id="config" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="locations">
+            <array>
+                <value>classpath:db.properties</value>
+            </array>
+        </property>
+    </bean>
+
+    <!--配置dbcp连接池-->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+    </bean>
+
+    <!--配置SqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--连接池-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--mapper xml配置文件-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+    <!--将mybatis的SqlSessionFactory交给Spring-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--sqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <!--配置DAO所在的包-->
+        <property name="basePackage" value="mapper"/>
+    </bean>
+
+    <!--事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--添加对事务的支持-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="loginService" class="service.impl.LoginServiceImpl">
+        <property name="adminMapper" ref="adminMapper"/>
+        <property name="studentMapper" ref="studentMapper"/>
+        <property name="teacherMapper" ref="teacherMapper"/>
+        <property name="borrowedBookMapper" ref="borrowedBookMapper"/>
+        <property name="bookMapper" ref="bookMapper"/>
+    </bean>
+    <bean id="announcementService" class="service.impl.AnnouncementServiceImpl">
+        <property name="announcementMapper" ref="announcementMapper"/>
+    </bean>
+    <bean id="rootService" class="service.root.impl.RootServiceImpl">
+        <property name="adminMapper" ref="adminMapper"/>
+        <property name="teacherMapper" ref="teacherMapper"/>
+        <property name="studentMapper" ref="studentMapper"/>
+    </bean>
+    <bean id="rootAdminService" class="service.root.impl.RootAdminServiceImpl">
+        <property name="adminMapper" ref="adminMapper"/>
+    </bean>
+    <bean id="rootAnnouncementService" class="service.root.impl.RootAnnouncementServiceImpl">
+        <property name="announcementMapper" ref="announcementMapper"/>
+    </bean>
+    <bean id="studentService" class="service.admin.impl.AdminStudentServiceImpl">
+        <property name="studentMapper" ref="studentMapper"/>
+    </bean>
+    <bean id="teacherService" class="service.admin.impl.AdminTeacherServiceImpl">
+        <property name="teacherMapper" ref="teacherMapper"/>
+    </bean>
+    <bean id="bookService" class="service.admin.impl.AdminBookServiceImpl">
+        <property name="bookMapper" ref="bookMapper"/>
+    </bean>
+    <bean id="adminBorrowService" class="service.admin.impl.AdminBorrowServiceImpl">
+        <property name="bookMapper" ref="bookMapper"/>
+        <property name="studentMapper" ref="studentMapper"/>
+        <property name="teacherMapper" ref="teacherMapper"/>
+        <property name="borrowedBookMapper" ref="borrowedBookMapper"/>
+        <property name="borrowingLogMapper" ref="borrowingLogMapper"/>
+    </bean>
+    <bean id="adminService" class="service.admin.impl.AdminServiceImpl">
+        <property name="adminMapper" ref="adminMapper"/>
+    </bean>
+    <bean id="adminLogService" class="service.admin.impl.AdminLogServiceImpl">
+        <property name="borrowedBookMapper" ref="borrowedBookMapper"/>
+        <property name="borrowingLogMapper" ref="borrowingLogMapper"/>
+        <property name="teacherMapper" ref="teacherMapper"/>
+        <property name="studentMapper" ref="studentMapper"/>
+    </bean>
+    <bean id="userService" class="service.user.impl.UserServiceImpl">
+        <property name="borrowingLogMapper" ref="borrowingLogMapper"/>
+        <property name="borrowedBookMapper" ref="borrowedBookMapper"/>
+        <property name="bookMapper" ref="bookMapper"/>
+        <property name="studentMapper" ref="studentMapper"/>
+        <property name="teacherMapper" ref="teacherMapper"/>
+    </bean>
+</beans>

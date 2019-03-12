@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TeacherMapper">
+    <select id="selectTeacherByID" resultType="bean.Teacher" parameterType="String">
+        select *
+        from teacher
+        where id = #{ID}
+    </select>
+    <select id="selectTeacher" resultType="bean.Teacher">
+        SELECT *
+        FROM teacher
+        WHERE ID LIKE CONCAT('%', #{teacher.ID}, '%')
+        AND name LIKE CONCAT('%', #{teacher.name}, '%')
+        <if test="sexCheck">
+            AND sex =#{teacher.sex}
+        </if>
+        AND department LIKE CONCAT('%', #{teacher.department}, '%')
+    </select>
+    <select id="numberOfTeacher" resultType="int">
+        select COUNT(1)
+        FROM teacher
+        WHERE ID LIKE CONCAT('%', #{teacher.ID}, '%')
+        AND name LIKE CONCAT('%', #{teacher.name}, '%')
+        <if test="sexCheck">
+            AND sex =#{teacher.sex}
+        </if>
+        AND department LIKE CONCAT('%', #{teacher.department}, '%')
+    </select>
+    <select id="numberOfAllTeacher" resultType="int">
+        select COUNT(1)
+        FROM teacher
+    </select>
+    <insert id="addTeacher" parameterType="bean.Teacher">
+        INSERT INTO teacher(ID, name, password, sex, department)
+        VALUES (#{ID}, #{name}, #{password}, #{sex}, #{department})
+    </insert>
+    <update id="updateTeacher" parameterType="bean.Teacher">
+        UPDATE teacher
+        SET name=#{name},
+            password=#{password},
+            sex=#{sex},
+            department=#{department}
+        where ID = #{ID}
+    </update>
+    <delete id="deleteTeacher" parameterType="String">
+        DELETE
+        FROM teacher
+        WHERE ID = #{ID}
+    </delete>
+
+    <update id="updateBookNumber">
+        UPDATE teacher SET
+        <if test="borrow">
+            booknumber=booknumber-#{number}
+        </if>
+        <if test="!borrow">
+            booknumber=booknumber+#{number}
+        </if>
+        WHERE ID=#{ID}
+    </update>
+    <update id="changePassword">
+        UPDATE teacher
+        SET password=#{password}
+        WHERE ID = #{ID}
+    </update>
+</mapper>

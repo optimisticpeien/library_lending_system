@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BookMapper">
+    <select id="selectBookByISBN" resultType="bean.Book" parameterType="String">
+        select *
+        from book
+        where ISBN = #{ISBN}
+    </select>
+    <select id="selectBook" resultType="bean.Book">
+        SELECT *
+        FROM book
+        WHERE ISBN LIKE CONCAT('%', #{book.ISBN}, '%')
+        AND name LIKE CONCAT('%', #{book.name}, '%')
+        AND author LIKE CONCAT('%', #{book.author}, '%')
+        AND press LIKE CONCAT('%', #{book.press}, '%')
+        AND type LIKE CONCAT('%', #{book.type}, '%')
+        <if test="map.pricingCheck">
+            AND pricing =#{book.pricing}
+        </if>
+        <if test="map.numberCheck">
+            AND number =#{book.number}
+        </if>
+        <if test="map.borrowCheck">
+            AND borrow=#{book.borrow}
+        </if>
+        AND introduction LIKE CONCAT('%', #{book.introduction}, '%')
+    </select>
+    <select id="numberOfBook" resultType="int">
+        select COUNT(1)
+        FROM book
+        WHERE ISBN LIKE CONCAT('%', #{book.ISBN}, '%')
+        AND name LIKE CONCAT('%', #{book.name}, '%')
+        AND author LIKE CONCAT('%', #{book.author}, '%')
+        AND press LIKE CONCAT('%', #{book.press}, '%')
+        AND type LIKE CONCAT('%', #{book.type}, '%')
+        <if test="map.pricingCheck">
+            AND pricing =#{book.pricing}
+        </if>
+        <if test="map.numberCheck">
+            AND number =#{book.number}
+        </if>
+        <if test="map.borrowCheck">
+            AND borrow=#{book.borrow}
+        </if>
+        AND introduction LIKE CONCAT('%', #{book.introduction}, '%')
+    </select>
+    <insert id="addBook" parameterType="bean.Book">
+        INSERT INTO book(ISBN, name, author, press, type, pricing, number, remaining, borrow, date, introduction)
+        VALUES (#{ISBN}, #{name}, #{author}, #{press}, #{type}, #{pricing}, #{number}, #{remaining}, #{borrow}, #{date}, #{introduction})
+    </insert>
+    <update id="updateBook" parameterType="bean.Book">
+        UPDATE book
+        SET name=#{name},
+            author=#{author},
+            press=#{press},
+            type=#{type},
+            pricing=#{pricing},
+            number=#{number},
+            remaining=#{remaining},
+            borrow=#{borrow},
+            date= #{date},
+            introduction=#{introduction}
+        where ISBN = #{ISBN}
+    </update>
+    <update id="updateRemaining">
+        UPDATE book SET
+        <if test="borrow">
+            remaining=remaining-1
+        </if>
+        <if test="!borrow">
+            remaining=remaining+1
+        </if>
+        WHERE ISBN=#{ISBN}
+    </update>
+    <delete id="deleteBook" parameterType="String">
+        DELETE
+        FROM book
+        WHERE ISBN = #{ISBN}
+    </delete>
+    <select id="numberOfAllBook" resultType="int">
+        select COUNT(1)
+        FROM book
+    </select>
+    <select id="selectLast" resultType="bean.Book">
+        SELECT *
+        FROM book
+        order by date desc
+        limit 5;
+    </select>
+</mapper>

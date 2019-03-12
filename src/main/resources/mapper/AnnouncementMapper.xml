@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.AnnouncementMapper">
+    <select id="selectAnnouncementByTitle" resultType="bean.Announcement" parameterType="String">
+        SELECT title, date, visibility, content
+        FROM announcement
+        WHERE title = #{title}
+    </select>
+    <select id="selectAnnouncement" resultType="bean.Announcement">
+        SELECT title, date, visibility, content
+        <include refid="select"/>
+    </select>
+    <select id="selectAnnouncementByDate" resultType="bean.Announcement">
+        SELECT title, date, visibility, content
+        FROM announcement
+        WHERE
+        <choose>
+            <when test="visibility==4">
+                visibility =4 OR visibility =5 OR visibility =6 OR visibility =7
+            </when>
+            <when test="visibility==2">
+                visibility =2 OR visibility =3 OR visibility =6 OR visibility =7
+            </when>
+            <when test="visibility==1">
+                visibility =1 OR visibility =3 OR visibility =5 OR visibility =7
+            </when>
+            <otherwise>
+                1=1
+            </otherwise>
+        </choose>
+        ORDER BY date DESC LIMIT #{offset},#{limit}
+    </select>
+    <select id="numberOfAnnouncementByVisibility" resultType="int">
+        SELECT COUNT(1)
+        FROM announcement
+        WHERE
+        <choose>
+            <when test="visibility==4">
+                visibility =4 OR visibility =5 OR visibility =6 OR visibility =7
+            </when>
+            <when test="visibility==2">
+                visibility =2 OR visibility =3 OR visibility =6 OR visibility =7
+            </when>
+            <when test="visibility==1">
+                visibility =1 OR visibility =3 OR visibility =5 OR visibility =7
+            </when>
+            <otherwise>
+                1=1
+            </otherwise>
+        </choose>
+    </select>
+    <insert id="addAnnouncement" parameterType="bean.Announcement">
+        INSERT INTO announcement (title, date, visibility, content)
+        VALUES (#{title}, #{date}, #{visibility}, #{content})
+    </insert>
+    <update id="updateAnnouncement" parameterType="bean.Announcement">
+        UPDATE announcement
+        SET visibility=#{visibility},
+            content=#{content}
+        WHERE title = #{title}
+    </update>
+    <delete id="deleteAnnouncement" parameterType="String">
+        DELETE
+        FROM announcement
+        WHERE title = #{title}
+    </delete>
+    <select id="numberOfAnnouncement" resultType="int">
+        select COUNT(1)
+        <include refid="select"/>
+    </select>
+    <sql id="select">
+        FROM announcement
+        WHERE title LIKE CONCAT('%', #{announcement.title}, '%')
+        <if test="visibilityCheck and relation">
+            AND visibility =#{announcement.visibility}
+        </if>
+        <if test="visibilityCheck and !relation">
+            <choose>
+                <when test="announcement.visibility==7">
+                    AND visibility >0
+                </when>
+                <when test="announcement.visibility==6">
+                    AND visibility !=1 AND visibility !=0
+                </when>
+                <when test="announcement.visibility==5">
+                    AND visibility !=2 AND visibility !=0
+                </when>
+                <when test="announcement.visibility==4">
+                    AND (visibility =4 OR visibility =5 OR visibility =6 OR visibility =7)
+                </when>
+                <when test="announcement.visibility==3">
+                    AND visibility !=4 AND visibility !=0
+                </when>
+                <when test="announcement.visibility==2">
+                    AND (visibility =2 OR visibility =3 OR visibility =6 OR visibility =7)
+                </when>
+                <when test="announcement.visibility==1">
+                    AND (visibility =1 OR visibility =3 OR visibility =5 OR visibility =7)
+                </when>
+                <when test="announcement.visibility==0">
+                    AND visibility =0
+                </when>
+            </choose>
+        </if>
+        AND content LIKE CONCAT('%', #{announcement.content}, '%')
+    </sql>
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BorrowedBookMapper">
+    <select id="select" resultType="bean.BorrowingBookInformation" parameterType="String">
+        SELECT *
+        FROM borrowed_book
+                 INNER JOIN book
+        WHERE id = #{ID}
+          AND borrowed_book.ISBN = book.ISBN
+    </select>
+    <select id="borrowNumber" resultType="int" parameterType="String">
+        SELECT count(1)
+        FROM borrowed_book
+                 INNER JOIN book
+        WHERE id = #{ID}
+          AND borrowed_book.ISBN = book.ISBN
+    </select>
+    <insert id="borrowBook" parameterType="bean.BorrowedBook">
+        INSERT INTO borrowed_book(ID, ISBN, borrowingDate, returnDate)
+        VALUES (#{ID}, #{ISBN}, #{borrowingDate}, #{returnDate})
+    </insert>
+    <delete id="returnBook">
+        DELETE FROM borrowed_book
+        WHERE ID=#{ID} AND ISBN in
+        <foreach item="ISBN" index="index" collection="ISBNs" open="(" separator="," close=")">
+            #{ISBN}
+        </foreach>
+    </delete>
+    <select id="repeatedBorrowing" resultType="boolean">
+        <![CDATA[
+
+                SELECT count(1)
+                FROM borrowed_book
+                WHERE ID = #{ID}
+                  AND ISBN = #{ISBN}
+
+        ]]>
+    </select>
+    <select id="renewSelect" resultType="bean.BorrowedBook">
+        SELECT *
+        FROM borrowed_book
+        WHERE ID = #{ID}
+          AND ISBN = #{ISBN}
+    </select>
+    <update id="renew">
+        UPDATE borrowed_book
+        SET returnDate=DATE_ADD(returnDate, INTERVAL #{date} DAY)
+        WHERE ID = #{ID}
+          AND ISBN = #{ISBN}
+    </update>
+    <select id="overdue" resultType="bean.BorrowingInformation">
+        SELECT ID, borrowed_book.ISBN, name as bookName, borrowingDate, returnDate
+        FROM borrowed_book
+                 INNER JOIN book
+        WHERE returnDate &lt; now()
+          AND borrowed_book.ISBN = book.ISBN
+    </select>
+    <select id="overdueNumber" resultType="int">
+        SELECT COUNT(1)
+        FROM borrowed_book
+        WHERE returnDate &lt; now()
+    </select>
+</mapper>
