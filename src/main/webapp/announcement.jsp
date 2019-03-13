@@ -37,12 +37,6 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">公告</a></li>
                 </ul>
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="书名或ISBN号">
-                    </div>
-                    <button type="submit" class="btn btn-default">查找</button>
-                </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="" data-toggle="modal" data-target="#myModal">关于</a></li>
                 </ul>
