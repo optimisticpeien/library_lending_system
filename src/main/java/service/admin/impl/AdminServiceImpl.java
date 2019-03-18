@@ -1,6 +1,9 @@
 package service.admin.impl;
 
 import mapper.AdminMapper;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import service.admin.AdminService;
 
 public class AdminServiceImpl implements AdminService {
@@ -11,6 +14,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public void changePassword(String ID, String password) {
         adminMapper.changePassword(ID, password);
     }

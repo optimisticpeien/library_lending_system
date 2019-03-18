@@ -9,6 +9,9 @@ import mapper.BorrowingLogMapper;
 import mapper.StudentMapper;
 import mapper.TeacherMapper;
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import service.admin.AdminLogService;
 
 import java.util.List;
@@ -36,6 +39,7 @@ public class AdminLogServiceImpl implements AdminLogService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public List<BorrowingInformation> overdue(int offset, int limit) {
         RowBounds rowBounds = new RowBounds(offset, limit);
         List<BorrowingInformation> borrowingInformations = borrowedBookMapper.overdue(rowBounds);
@@ -54,11 +58,13 @@ public class AdminLogServiceImpl implements AdminLogService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public int NumberOfOverdue() {
         return borrowedBookMapper.overdueNumber();
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public List<BorrowingBookInformation> borrowingRecord(String ID, int offset, int limit) {
         List<BorrowingBookInformation> borrowing = borrowedBookMapper.select(ID);
         borrowing.addAll(borrowingLogMapper.select(ID));
@@ -67,6 +73,7 @@ public class AdminLogServiceImpl implements AdminLogService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public int NumberOfLog(String ID) {
         int number = borrowedBookMapper.borrowNumber(ID);
         number += borrowingLogMapper.borrowNumber(ID);

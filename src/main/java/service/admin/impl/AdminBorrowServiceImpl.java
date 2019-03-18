@@ -2,6 +2,9 @@ package service.admin.impl;
 
 import bean.*;
 import mapper.*;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import service.admin.AdminBorrowService;
 
 import java.util.Calendar;
@@ -50,6 +53,7 @@ public class AdminBorrowServiceImpl implements AdminBorrowService {
      * -6：重复借书
      */
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public int borrowBook(String identity, String ID, String[] ISBNs) {
         int duration = 0;
         int bookNumber = ISBNs.length;
@@ -107,11 +111,13 @@ public class AdminBorrowServiceImpl implements AdminBorrowService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public List<BorrowingBookInformation> select(String ID) {
         return borrowedBookMapper.select(ID);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public void returnBook(String identity, String ID, String[] ISBNs) {
         Calendar calendar = Calendar.getInstance();
         Date returnDate = calendar.getTime();
@@ -136,6 +142,7 @@ public class AdminBorrowServiceImpl implements AdminBorrowService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public void renew(String identity, String ID, String[] ISBNs) {
         int date = 0;
         if (identity.equals("student")) {

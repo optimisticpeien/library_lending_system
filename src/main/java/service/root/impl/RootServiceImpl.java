@@ -4,6 +4,9 @@ import listener.OnlineUsers;
 import mapper.AdminMapper;
 import mapper.StudentMapper;
 import mapper.TeacherMapper;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import service.root.RootService;
 
 import java.util.HashMap;
@@ -27,6 +30,7 @@ public class RootServiceImpl implements RootService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public Map<String, Object> jmpRoot() {
         Map<String, Object> map = new HashMap<>();
         map.put("adminNumber", adminMapper.numberOfAdmin("", ""));
@@ -38,6 +42,7 @@ public class RootServiceImpl implements RootService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public void changePassword(String ID, String password) {
         adminMapper.changePassword(ID, password);
     }

@@ -2,12 +2,14 @@ package service.impl;
 
 import bean.*;
 import mapper.*;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import service.LoginService;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 public class LoginServiceImpl implements LoginService {
 
@@ -38,6 +40,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public Map<String, Object> login(String ID, String identity, String password) {
         Map<String, Object> map = new HashMap<>();
         List<BorrowingBookInformation> borrowedBooks;

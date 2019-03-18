@@ -5,6 +5,9 @@ import bean.BorrowedBook;
 import bean.BorrowingBookInformation;
 import mapper.*;
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import service.user.UserService;
 
 import java.util.Calendar;
@@ -41,6 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public List<BorrowingBookInformation> borrowingRecord(String ID, int offset, int limit) {
         List<BorrowingBookInformation> borrowing = borrowingLogMapper.select(ID);
         int l = offset + limit > borrowing.size() ? borrowing.size() : offset + limit;
@@ -48,17 +52,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public int NumberOfLog(String ID) {
         return borrowingLogMapper.borrowNumber(ID);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public List<BorrowingBookInformation> selectBorrowed(String ID) {
         return borrowedBookMapper.select(ID);
     }
 
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public boolean renew(String identity, String ID, String[] ISBNs) {
         int date = 0, l = 0;
         if (identity.equals("student")) {
@@ -85,6 +92,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public List<Book> selectBook(Book book, int offset, int limit) {
         Map<String, Boolean> map = new HashMap<>();
         map.put("pricingCheck", false);
@@ -95,6 +103,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public int NumberOfBook(Book book) {
         Map<String, Boolean> map = new HashMap<>();
         map.put("pricingCheck", false);
@@ -104,11 +113,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public Book selectBookByISBN(String ISBN) {
         return bookMapper.selectBookByISBN(ISBN);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public void changePassword(String identity, String ID, String password) {
         if (identity.equals("student"))
             studentMapper.changePassword(ID, password);

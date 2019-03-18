@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import service.admin.impl.AdminLogServiceImpl;
+import service.admin.AdminLogService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,10 +17,10 @@ import java.util.Map;
 @RequestMapping("admin/log")
 public class AdminLogController {
 
-    private AdminLogServiceImpl adminLogService;
+    private AdminLogService adminLogService;
 
     @Autowired
-    public void setAdminLogService(AdminLogServiceImpl adminLogService) {
+    public void setAdminLogService(AdminLogService adminLogService) {
         this.adminLogService = adminLogService;
     }
 

@@ -3,6 +3,9 @@ package service.admin.impl;
 import bean.Student;
 import mapper.StudentMapper;
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import service.admin.AdminStudentService;
 
 import java.util.List;
@@ -16,6 +19,7 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public boolean studentAdd(Student student) {
         Student stu = studentMapper.selectStudentByID(student.getID());
         if (stu == null) {
@@ -27,6 +31,7 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public boolean studentDelete(String ID) {
         Student stu = studentMapper.selectStudentByID(ID);
         if (stu != null) {
@@ -38,6 +43,7 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public boolean studentUpdate(Student student) {
         Student stu = studentMapper.selectStudentByID(student.getID());
         if (stu != null) {
@@ -49,17 +55,20 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public Student selectStudentByID(String ID) {
         return studentMapper.selectStudentByID(ID);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public List<Student> selectStudent(Student student, boolean sexCheck, int offset, int limit) {
         RowBounds rowBounds = new RowBounds(offset, limit);
         return studentMapper.selectStudent(student, sexCheck, rowBounds);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public int NumberOfStudent(Student student, boolean sexCheck) {
         return studentMapper.numberOfStudent(student, sexCheck);
     }

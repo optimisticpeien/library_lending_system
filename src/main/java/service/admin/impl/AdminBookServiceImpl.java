@@ -3,6 +3,9 @@ package service.admin.impl;
 import bean.Book;
 import mapper.BookMapper;
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import service.admin.AdminBookService;
 
 import java.util.Calendar;
@@ -19,6 +22,7 @@ public class AdminBookServiceImpl implements AdminBookService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public boolean bookAdd(Book book) {
         Book book1 = bookMapper.selectBookByISBN(book.getISBN());
         if (book1 == null) {
@@ -34,6 +38,7 @@ public class AdminBookServiceImpl implements AdminBookService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public boolean bookDelete(String ISBN) {
         Book book1 = bookMapper.selectBookByISBN(ISBN);
         if (book1 != null) {
@@ -47,6 +52,7 @@ public class AdminBookServiceImpl implements AdminBookService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public boolean bookUpdate(Book book) {
         Book book1 = bookMapper.selectBookByISBN(book.getISBN());
         if (book1 != null) {
@@ -62,17 +68,20 @@ public class AdminBookServiceImpl implements AdminBookService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public Book selectBookByISBN(String ISBN) {
         return bookMapper.selectBookByISBN(ISBN);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public List<Book> selectBook(Book book, Map<String, Boolean> map, int offset, int limit) {
         RowBounds rowBounds = new RowBounds(offset, limit);
         return bookMapper.selectBook(book, map, rowBounds);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public int NumberOfBook(Book book, Map<String, Boolean> map) {
         return bookMapper.numberOfBook(book, map);
     }
