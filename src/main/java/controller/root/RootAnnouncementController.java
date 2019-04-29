@@ -1,6 +1,6 @@
 package controller.root;
 
-import bean.Announcement;
+import entity.Announcement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

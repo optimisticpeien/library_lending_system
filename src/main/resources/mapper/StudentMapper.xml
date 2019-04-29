@@ -3,12 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.StudentMapper">
-    <select id="selectStudentByID" resultType="bean.Student" parameterType="String">
+    <select id="selectStudentByID" resultType="entity.Student" parameterType="String">
         select *
         from student
         where id = #{ID}
     </select>
-    <select id="selectStudent" resultType="bean.Student">
+    <select id="selectStudent" resultType="entity.Student">
         SELECT *
         FROM student
         WHERE ID LIKE CONCAT('%', #{student.ID}, '%')
@@ -30,11 +30,11 @@
         AND department LIKE CONCAT('%', #{student.department}, '%')
         AND grade LIKE CONCAT('%', #{student.grade}, '%')
     </select>
-    <insert id="addStudent" parameterType="bean.Student">
+    <insert id="addStudent" parameterType="entity.Student">
         INSERT INTO student(ID, name, password, sex, department, grade)
         VALUES (#{ID}, #{name}, #{password}, #{sex}, #{department}, #{grade})
     </insert>
-    <update id="updateStudent" parameterType="bean.Student">
+    <update id="updateStudent" parameterType="entity.Student">
         UPDATE student
         SET name=#{name},
             password=#{password},

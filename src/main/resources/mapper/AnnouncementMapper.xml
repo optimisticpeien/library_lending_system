@@ -3,16 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.AnnouncementMapper">
-    <select id="selectAnnouncementByTitle" resultType="bean.Announcement" parameterType="String">
+    <select id="selectAnnouncementByTitle" resultType="entity.Announcement" parameterType="String">
         SELECT title, date, visibility, content
         FROM announcement
         WHERE title = #{title}
     </select>
-    <select id="selectAnnouncement" resultType="bean.Announcement">
+    <select id="selectAnnouncement" resultType="entity.Announcement">
         SELECT title, date, visibility, content
         <include refid="select"/>
     </select>
-    <select id="selectAnnouncementByDate" resultType="bean.Announcement">
+    <select id="selectAnnouncementByDate" resultType="entity.Announcement">
         SELECT title, date, visibility, content
         FROM announcement
         WHERE
@@ -51,11 +51,11 @@
             </otherwise>
         </choose>
     </select>
-    <insert id="addAnnouncement" parameterType="bean.Announcement">
+    <insert id="addAnnouncement" parameterType="entity.Announcement">
         INSERT INTO announcement (title, date, visibility, content)
         VALUES (#{title}, #{date}, #{visibility}, #{content})
     </insert>
-    <update id="updateAnnouncement" parameterType="bean.Announcement">
+    <update id="updateAnnouncement" parameterType="entity.Announcement">
         UPDATE announcement
         SET visibility=#{visibility},
             content=#{content}

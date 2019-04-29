@@ -1,6 +1,6 @@
 package service.root;
 
-import bean.Admin;
+import entity.Admin;
 
 import java.util.List;
 

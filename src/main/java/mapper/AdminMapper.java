@@ -1,6 +1,6 @@
 package mapper;
 
-import bean.Admin;
+import entity.Admin;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 

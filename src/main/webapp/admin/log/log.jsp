@@ -134,7 +134,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading">借阅记录</div>
                 <div class="panel-body">
-                    <p id="logNum"></p>
+                    <p id="logNum">请输入相关查询条件</p>
                 </div>
                 <table class="table table-condensed" id="logTable">
                 </table>

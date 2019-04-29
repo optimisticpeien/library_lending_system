@@ -18,7 +18,7 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    <!--使用过滤器验证session是否过期(新用户访问任何页面跳转到登录页)和身份-->
+    <!--使用过滤器验证session是否过期和身份(新用户访问任何页面跳转到登录页)-->
     <filter>
         <filter-name>RootFilter</filter-name>
         <filter-class>filter.RootFilter</filter-class>
@@ -77,7 +77,7 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:applicationContext-controller.xml</param-value>
+            <param-value>classpath:spring-servlet.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>

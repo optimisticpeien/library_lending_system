@@ -1,6 +1,6 @@
-package service.impl;
+package serviceImpl;
 
-import bean.*;
+import entity.*;
 import mapper.*;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -77,16 +77,16 @@ public class LoginServiceImpl implements LoginService {
             case "admin":
                 Admin admin = adminMapper.selectAdminByID(ID);
                 if (admin != null && password.equals(admin.getPassword())) {
+                    map.put("adminNumber", adminMapper.numberOfAdmin("", ""));
+                    map.put("teacherNumber", teacherMapper.numberOfAllTeacher());
+                    map.put("studentNumber", studentMapper.numberOfAllStudent());
                     if (admin.getID().equals("root")) {
-                        map.put("adminNumber", adminMapper.numberOfAdmin("", ""));
-                        map.put("teacherNumber", teacherMapper.numberOfAllTeacher());
-                        map.put("studentNumber", studentMapper.numberOfAllStudent());
                         map.put("identity", "root");
                         map.put("user", admin);
-                        return map;
+                    } else {
+                        map.put("identity", "admin");
+                        map.put("user", admin);
                     }
-                    map.put("identity", "admin");
-                    map.put("user", admin);
                     return map;
                 }
                 map.put("identity", "error");

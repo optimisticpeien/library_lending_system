@@ -1,8 +1,8 @@
 package mapper;
 
-import bean.BorrowedBook;
-import bean.BorrowingBookInformation;
-import bean.BorrowingInformation;
+import entity.BorrowedBook;
+import entity.BorrowingBookInformation;
+import entity.BorrowingInformation;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 

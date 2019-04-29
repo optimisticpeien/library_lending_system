@@ -1,6 +1,6 @@
 package service.root;
 
-import bean.Announcement;
+import entity.Announcement;
 
 import java.util.List;
 

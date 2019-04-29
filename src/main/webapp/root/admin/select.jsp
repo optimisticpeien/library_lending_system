@@ -154,7 +154,7 @@
 <script>
     let ID = "";            //查询ID
     let name = "";          //查询name
-    let limit = 8;          //分页大小
+    let limit = 10;          //分页大小
     let page = 1;           //当前页
     let adminNumber = 0;    //数据条数
     let pageNumber = 0;     //总页数

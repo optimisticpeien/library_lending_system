@@ -1,7 +1,7 @@
 package service.user;
 
-import bean.Book;
-import bean.BorrowingBookInformation;
+import entity.Book;
+import entity.BorrowingBookInformation;
 
 import java.util.List;
 

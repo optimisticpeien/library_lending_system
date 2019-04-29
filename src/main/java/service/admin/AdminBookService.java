@@ -1,6 +1,6 @@
 package service.admin;
 
-import bean.Book;
+import entity.Book;
 
 import java.util.List;
 import java.util.Map;

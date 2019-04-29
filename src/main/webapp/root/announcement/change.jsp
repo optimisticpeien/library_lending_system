@@ -3,7 +3,7 @@
   Date: 2019/2/1
   Time: 15:39
 --%>
-<%@ page import="bean.Announcement" %>
+<%@ page import="entity.Announcement" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>

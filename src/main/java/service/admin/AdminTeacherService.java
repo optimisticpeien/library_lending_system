@@ -1,6 +1,6 @@
 package service.admin;
 
-import bean.Teacher;
+import entity.Teacher;
 
 import java.util.List;
 

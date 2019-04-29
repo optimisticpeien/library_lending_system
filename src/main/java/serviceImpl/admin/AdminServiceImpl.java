@@ -1,4 +1,4 @@
-package service.admin.impl;
+package serviceImpl.admin;
 
 import mapper.AdminMapper;
 import org.springframework.transaction.annotation.Isolation;

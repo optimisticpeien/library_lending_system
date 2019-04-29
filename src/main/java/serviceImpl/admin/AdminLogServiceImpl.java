@@ -1,9 +1,9 @@
-package service.admin.impl;
+package serviceImpl.admin;
 
-import bean.BorrowingBookInformation;
-import bean.BorrowingInformation;
-import bean.Student;
-import bean.Teacher;
+import entity.BorrowingBookInformation;
+import entity.BorrowingInformation;
+import entity.Student;
+import entity.Teacher;
 import mapper.BorrowedBookMapper;
 import mapper.BorrowingLogMapper;
 import mapper.StudentMapper;

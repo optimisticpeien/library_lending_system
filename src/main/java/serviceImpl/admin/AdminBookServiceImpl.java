@@ -1,6 +1,6 @@
-package service.admin.impl;
+package serviceImpl.admin;
 
-import bean.Book;
+import entity.Book;
 import mapper.BookMapper;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.transaction.annotation.Isolation;

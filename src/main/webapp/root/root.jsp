@@ -102,8 +102,18 @@
         <p><a class="btn btn-primary" id="more" href="announcement" role="button">了解更多</a></p>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <div class="panel panel-info animated fadeInLeft">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="panel panel-info animated fadeInUp">
+                <div class="panel-heading">个人信息</div>
+                <ul class="panel-body list-group">
+                    <li class="list-group-item">${"工号:".concat(sessionScope.user.ID)}</li>
+                    <li class="list-group-item">${"姓名:".concat(sessionScope.user.name)}</li>
+                    zzz
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="panel panel-info animated fadeInUp">
                 <div class="panel-heading">人员信息</div>
                 <ul class="panel-body list-group">
                     <li class="list-group-item">管理员人数：${sessionScope.adminNumber}</li>
@@ -112,8 +122,8 @@
                 </ul>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <div class="panel panel-info animated fadeInRight">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="panel panel-info animated fadeInUp">
                 <div class="panel-heading">服务器信息</div>
                 <ul class="panel-body list-group">
                     <li class="list-group-item">服务器：<%=application.getServerInfo()%>

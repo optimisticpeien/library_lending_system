@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.BorrowingLogMapper">
-    <select id="select" resultType="bean.BorrowingBookInformation" parameterType="String">
+    <select id="select" resultType="entity.BorrowingBookInformation" parameterType="String">
         SELECT *
         FROM borrowing_log
                  INNER JOIN book
@@ -17,7 +17,7 @@
         WHERE id = #{ID}
           AND borrowing_log.ISBN = book.ISBN
     </select>
-    <insert id="logging" parameterType="bean.BorrowedBook">
+    <insert id="logging" parameterType="entity.BorrowedBook">
         INSERT INTO borrowing_log(ID, ISBN, borrowingDate, returnDate)
         VALUES (#{ID}, #{ISBN}, #{borrowingDate}, #{returnDate})
     </insert>

@@ -1,6 +1,6 @@
-package service.root.impl;
+package serviceImpl.root;
 
-import bean.Announcement;
+import entity.Announcement;
 import mapper.AnnouncementMapper;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.transaction.annotation.Isolation;

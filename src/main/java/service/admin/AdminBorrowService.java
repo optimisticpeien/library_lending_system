@@ -1,6 +1,6 @@
 package service.admin;
 
-import bean.BorrowingBookInformation;
+import entity.BorrowingBookInformation;
 
 import java.util.List;
 

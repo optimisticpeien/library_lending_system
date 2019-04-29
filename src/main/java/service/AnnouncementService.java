@@ -1,6 +1,6 @@
 package service;
 
-import bean.Announcement;
+import entity.Announcement;
 
 public interface AnnouncementService {
     Announcement announcement(String identity, int offset);

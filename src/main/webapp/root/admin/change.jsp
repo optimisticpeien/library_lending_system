@@ -127,7 +127,8 @@
                     <div class="input-group">
                         <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
                         <input type="password" class="form-control" id="pwdagain" onkeyup="validate()"
-                               onkeydown="validate()" onblur="validate()" placeholder="再次输入密码"
+                               onkeydown="validate()" onblur="validate()" value="${requestScope.admin.password}"
+                               placeholder="再次输入密码"
                                aria-describedby="basic-addon1">
                     </div>
                     <br>

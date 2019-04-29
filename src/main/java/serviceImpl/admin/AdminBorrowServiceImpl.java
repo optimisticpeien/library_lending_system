@@ -1,6 +1,6 @@
-package service.admin.impl;
+package serviceImpl.admin;
 
-import bean.*;
+import entity.*;
 import mapper.*;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;

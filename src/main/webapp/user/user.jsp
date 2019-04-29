@@ -3,8 +3,8 @@
   Date: 2019/2/1
   Time: 15:39
 --%>
-<%@ page import="bean.Book" %>
-<%@ page import="bean.BorrowingBookInformation" %>
+<%@ page import="entity.Book" %>
+<%@ page import="entity.BorrowingBookInformation" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" %>

@@ -1,19 +1,17 @@
-package bean;
+package entity;
 
 import java.util.Date;
 
-public class BorrowingInformation {
-    private String ID, peopleName, ISBN, bookName;
+public class BorrowedBook {
+    private String ID, ISBN;
     private Date borrowingDate, returnDate;
 
-    public BorrowingInformation() {
+    public BorrowedBook() {
     }
 
-    public BorrowingInformation(String ID, String peopleName, String ISBN, String bookName, Date borrowingDate, Date returnDate) {
+    public BorrowedBook(String ID, String ISBN, Date borrowingDate, Date returnDate) {
         this.ID = ID;
-        this.peopleName = peopleName;
         this.ISBN = ISBN;
-        this.bookName = bookName;
         this.borrowingDate = borrowingDate;
         this.returnDate = returnDate;
     }
@@ -26,28 +24,12 @@ public class BorrowingInformation {
         this.ID = ID;
     }
 
-    public String getPeopleName() {
-        return peopleName;
-    }
-
-    public void setPeopleName(String peopleName) {
-        this.peopleName = peopleName;
-    }
-
     public String getISBN() {
         return ISBN;
     }
 
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
-    }
-
-    public String getBookName() {
-        return bookName;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
     }
 
     public Date getBorrowingDate() {

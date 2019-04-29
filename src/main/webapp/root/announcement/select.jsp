@@ -180,7 +180,7 @@
     let visibilityCheck = 0;  //是否选择查询可见性
     let visibility = 0;       //可见性
     let relation = false;      //关系
-    let limit = 8;          //分页大小
+    let limit = 10;          //分页大小
     let page = 1;           //当前页
     let announcementNumber = 0;    //数据条数
     let pageNumber = 0;     //总页数

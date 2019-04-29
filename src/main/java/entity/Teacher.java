@@ -1,4 +1,4 @@
-package bean;
+package entity;
 
 public class Teacher extends Admin {
     private boolean sex;

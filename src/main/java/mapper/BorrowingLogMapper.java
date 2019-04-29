@@ -1,7 +1,7 @@
 package mapper;
 
-import bean.BorrowedBook;
-import bean.BorrowingBookInformation;
+import entity.BorrowedBook;
+import entity.BorrowingBookInformation;
 
 import java.util.List;
 

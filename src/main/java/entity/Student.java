@@ -1,4 +1,4 @@
-package bean;
+package entity;
 
 public class Student extends Teacher {
     private String grade;

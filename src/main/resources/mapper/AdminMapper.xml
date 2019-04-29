@@ -3,12 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.AdminMapper">
-    <select id="selectAdminByID" resultType="bean.Admin" parameterType="String">
+    <select id="selectAdminByID" resultType="entity.Admin" parameterType="String">
         select ID, name, password
         from admin
         where id = #{ID}
     </select>
-    <select id="selectAdmin" resultType="bean.Admin">
+    <select id="selectAdmin" resultType="entity.Admin">
         SELECT ID, name, password
         FROM admin
         WHERE ID LIKE CONCAT('%', #{ID}, '%')
@@ -20,7 +20,7 @@
         WHERE ID LIKE CONCAT('%', #{ID}, '%')
           AND name LIKE CONCAT('%', #{name}, '%')
     </select>
-    <insert id="addAdmin" parameterType="bean.Admin">
+    <insert id="addAdmin" parameterType="entity.Admin">
         INSERT INTO admin(ID, name, password)
         VALUES (#{ID}, #{name}, #{password})
     </insert>
@@ -29,7 +29,7 @@
         FROM admin
         WHERE ID = #{ID}
     </delete>
-    <update id="updateAdmin" parameterType="bean.Admin">
+    <update id="updateAdmin" parameterType="entity.Admin">
         UPDATE admin
         SET name=#{name},
             password=#{password}

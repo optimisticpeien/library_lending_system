@@ -165,7 +165,7 @@
 
     <div class="animated fadeInUp">
         <div class="panel panel-success">
-            <div class="panel-heading">学生信息</div>
+            <div class="panel-heading">图书信息</div>
             <div class="panel-body">
                 <p id="bookNum"></p>
             </div>
@@ -293,7 +293,7 @@
                         "                </tr>\n" +
                         "                <tr class=\"books\">\n" +
                         "                    <th>简介</th>\n" +
-                        "                    <td colspan=\"5\">" + map.books[i].introduction.substring(0, 100) + "……</td>\n" +
+                        "                    <td colspan=\"5\">" + map.books[i].introduction.substring(0, 50) + "……</td>\n" +
                         "                </tr>\n" +
                         "                </tbody>");
                 }

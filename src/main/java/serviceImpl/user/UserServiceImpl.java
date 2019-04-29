@@ -1,8 +1,8 @@
-package service.user.impl;
+package serviceImpl.user;
 
-import bean.Book;
-import bean.BorrowedBook;
-import bean.BorrowingBookInformation;
+import entity.Book;
+import entity.BorrowedBook;
+import entity.BorrowingBookInformation;
 import mapper.*;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.transaction.annotation.Isolation;

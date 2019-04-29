@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.BorrowedBookMapper">
-    <select id="select" resultType="bean.BorrowingBookInformation" parameterType="String">
+    <select id="select" resultType="entity.BorrowingBookInformation" parameterType="String">
         SELECT *
         FROM borrowed_book
                  INNER JOIN book
@@ -17,7 +17,7 @@
         WHERE id = #{ID}
           AND borrowed_book.ISBN = book.ISBN
     </select>
-    <insert id="borrowBook" parameterType="bean.BorrowedBook">
+    <insert id="borrowBook" parameterType="entity.BorrowedBook">
         INSERT INTO borrowed_book(ID, ISBN, borrowingDate, returnDate)
         VALUES (#{ID}, #{ISBN}, #{borrowingDate}, #{returnDate})
     </insert>
@@ -38,7 +38,7 @@
 
         ]]>
     </select>
-    <select id="renewSelect" resultType="bean.BorrowedBook">
+    <select id="renewSelect" resultType="entity.BorrowedBook">
         SELECT *
         FROM borrowed_book
         WHERE ID = #{ID}
@@ -50,7 +50,7 @@
         WHERE ID = #{ID}
           AND ISBN = #{ISBN}
     </update>
-    <select id="overdue" resultType="bean.BorrowingInformation">
+    <select id="overdue" resultType="entity.BorrowingInformation">
         SELECT ID, borrowed_book.ISBN, name as bookName, borrowingDate, returnDate
         FROM borrowed_book
                  INNER JOIN book

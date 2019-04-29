@@ -1,6 +1,6 @@
-package service.root.impl;
+package serviceImpl.root;
 
-import bean.Admin;
+import entity.Admin;
 import mapper.AdminMapper;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.transaction.annotation.Isolation;

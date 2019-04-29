@@ -118,12 +118,36 @@
         <p><a class="btn btn-primary" id="more" href="announcement" role="button">了解更多</a></p>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
-            <div class="panel panel-info animated fadeInLeft">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="panel panel-info animated fadeInUp">
                 <div class="panel-heading">个人信息</div>
                 <ul class="panel-body list-group">
-                    <li class="list-group-item">${"工号：".concat(sessionScope.user.ID)}</li>
-                    <li class="list-group-item">${"姓名：".concat(sessionScope.user.name)}</li>
+                    <li class="list-group-item">${"工号:".concat(sessionScope.user.ID)}</li>
+                    <li class="list-group-item">${"姓名:".concat(sessionScope.user.name)}</li>
+                    <li class="list-group-item">${"最后登陆:".concat(sessionScope.lastDate)}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="panel panel-info animated fadeInUp">
+                <div class="panel-heading">人员信息</div>
+                <ul class="panel-body list-group">
+                    <li class="list-group-item">管理员人数：${sessionScope.adminNumber}</li>
+                    <li class="list-group-item">教师人数：${sessionScope.teacherNumber}</li>
+                    <li class="list-group-item">学生人数：${sessionScope.studentNumber}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="panel panel-info animated fadeInUp">
+                <div class="panel-heading">服务器信息</div>
+                <ul class="panel-body list-group">
+                    <li class="list-group-item">服务器：<%=application.getServerInfo()%>
+                    </li>
+                    <li class="list-group-item">在线人数：<%=session.getAttribute("userNumber")%>
+                    </li>
+                    <li class="list-group-item">网站访问量：<%=session.getAttribute("sum")%>
+                    </li>
                 </ul>
             </div>
         </div>

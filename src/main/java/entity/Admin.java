@@ -1,4 +1,4 @@
-package bean;
+package entity;
 
 public class Admin {
     private String ID, name, password;

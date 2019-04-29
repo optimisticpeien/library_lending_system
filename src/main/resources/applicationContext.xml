@@ -14,7 +14,7 @@
         </property>
     </bean>
 
-    <!--配置dbcp连接池-->
+    <!--配置dbcp2连接池-->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${driver}"/>
         <property name="url" value="${url}"/>
@@ -46,53 +46,53 @@
     <!--添加对事务的支持-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <bean id="loginService" class="service.impl.LoginServiceImpl">
+    <bean id="loginService" class="serviceImpl.LoginServiceImpl">
         <property name="adminMapper" ref="adminMapper"/>
         <property name="studentMapper" ref="studentMapper"/>
         <property name="teacherMapper" ref="teacherMapper"/>
         <property name="borrowedBookMapper" ref="borrowedBookMapper"/>
         <property name="bookMapper" ref="bookMapper"/>
     </bean>
-    <bean id="announcementService" class="service.impl.AnnouncementServiceImpl">
+    <bean id="announcementService" class="serviceImpl.AnnouncementServiceImpl">
         <property name="announcementMapper" ref="announcementMapper"/>
     </bean>
-    <bean id="rootService" class="service.root.impl.RootServiceImpl">
+    <bean id="rootService" class="serviceImpl.root.RootServiceImpl">
         <property name="adminMapper" ref="adminMapper"/>
         <property name="teacherMapper" ref="teacherMapper"/>
         <property name="studentMapper" ref="studentMapper"/>
     </bean>
-    <bean id="rootAdminService" class="service.root.impl.RootAdminServiceImpl">
+    <bean id="rootAdminService" class="serviceImpl.root.RootAdminServiceImpl">
         <property name="adminMapper" ref="adminMapper"/>
     </bean>
-    <bean id="rootAnnouncementService" class="service.root.impl.RootAnnouncementServiceImpl">
+    <bean id="rootAnnouncementService" class="serviceImpl.root.RootAnnouncementServiceImpl">
         <property name="announcementMapper" ref="announcementMapper"/>
     </bean>
-    <bean id="studentService" class="service.admin.impl.AdminStudentServiceImpl">
+    <bean id="studentService" class="serviceImpl.admin.AdminStudentServiceImpl">
         <property name="studentMapper" ref="studentMapper"/>
     </bean>
-    <bean id="teacherService" class="service.admin.impl.AdminTeacherServiceImpl">
+    <bean id="teacherService" class="serviceImpl.admin.AdminTeacherServiceImpl">
         <property name="teacherMapper" ref="teacherMapper"/>
     </bean>
-    <bean id="bookService" class="service.admin.impl.AdminBookServiceImpl">
+    <bean id="bookService" class="serviceImpl.admin.AdminBookServiceImpl">
         <property name="bookMapper" ref="bookMapper"/>
     </bean>
-    <bean id="adminBorrowService" class="service.admin.impl.AdminBorrowServiceImpl">
+    <bean id="adminBorrowService" class="serviceImpl.admin.AdminBorrowServiceImpl">
         <property name="bookMapper" ref="bookMapper"/>
         <property name="studentMapper" ref="studentMapper"/>
         <property name="teacherMapper" ref="teacherMapper"/>
         <property name="borrowedBookMapper" ref="borrowedBookMapper"/>
         <property name="borrowingLogMapper" ref="borrowingLogMapper"/>
     </bean>
-    <bean id="adminService" class="service.admin.impl.AdminServiceImpl">
+    <bean id="adminService" class="serviceImpl.admin.AdminServiceImpl">
         <property name="adminMapper" ref="adminMapper"/>
     </bean>
-    <bean id="adminLogService" class="service.admin.impl.AdminLogServiceImpl">
+    <bean id="adminLogService" class="serviceImpl.admin.AdminLogServiceImpl">
         <property name="borrowedBookMapper" ref="borrowedBookMapper"/>
         <property name="borrowingLogMapper" ref="borrowingLogMapper"/>
         <property name="teacherMapper" ref="teacherMapper"/>
         <property name="studentMapper" ref="studentMapper"/>
     </bean>
-    <bean id="userService" class="service.user.impl.UserServiceImpl">
+    <bean id="userService" class="serviceImpl.user.UserServiceImpl">
         <property name="borrowingLogMapper" ref="borrowingLogMapper"/>
         <property name="borrowedBookMapper" ref="borrowedBookMapper"/>
         <property name="bookMapper" ref="bookMapper"/>

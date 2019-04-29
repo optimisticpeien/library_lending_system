@@ -1,7 +1,7 @@
 package mapper;
 
 
-import bean.Teacher;
+import entity.Teacher;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 

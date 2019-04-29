@@ -1,6 +1,6 @@
 package service.admin;
 
-import bean.Student;
+import entity.Student;
 
 import java.util.List;
 

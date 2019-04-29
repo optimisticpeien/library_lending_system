@@ -1,29 +1,29 @@
-package service.admin.impl;
+package serviceImpl.admin;
 
-import bean.Student;
-import mapper.StudentMapper;
+import entity.Teacher;
+import mapper.TeacherMapper;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import service.admin.AdminStudentService;
+import service.admin.AdminTeacherService;
 
 import java.util.List;
 
-public class AdminStudentServiceImpl implements AdminStudentService {
+public class AdminTeacherServiceImpl implements AdminTeacherService {
 
-    private StudentMapper studentMapper;
+    private TeacherMapper teacherMapper;
 
-    public void setStudentMapper(StudentMapper studentMapper) {
-        this.studentMapper = studentMapper;
+    public void setTeacherMapper(TeacherMapper teacherMapper) {
+        this.teacherMapper = teacherMapper;
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
-    public boolean studentAdd(Student student) {
-        Student stu = studentMapper.selectStudentByID(student.getID());
+    public boolean teacherAdd(Teacher teacher) {
+        Teacher stu = teacherMapper.selectTeacherByID(teacher.getID());
         if (stu == null) {
-            studentMapper.addStudent(student);
+            teacherMapper.addTeacher(teacher);
             return true;
         } else {
             return false;
@@ -32,10 +32,10 @@ public class AdminStudentServiceImpl implements AdminStudentService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
-    public boolean studentDelete(String ID) {
-        Student stu = studentMapper.selectStudentByID(ID);
+    public boolean teacherDelete(String ID) {
+        Teacher stu = teacherMapper.selectTeacherByID(ID);
         if (stu != null) {
-            studentMapper.deleteStudent(ID);
+            teacherMapper.deleteTeacher(ID);
             return true;
         } else {
             return false;
@@ -44,10 +44,10 @@ public class AdminStudentServiceImpl implements AdminStudentService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
-    public boolean studentUpdate(Student student) {
-        Student stu = studentMapper.selectStudentByID(student.getID());
+    public boolean teacherUpdate(Teacher teacher) {
+        Teacher stu = teacherMapper.selectTeacherByID(teacher.getID());
         if (stu != null) {
-            studentMapper.updateStudent(student);
+            teacherMapper.updateTeacher(teacher);
             return true;
         } else {
             return false;
@@ -56,20 +56,20 @@ public class AdminStudentServiceImpl implements AdminStudentService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
-    public Student selectStudentByID(String ID) {
-        return studentMapper.selectStudentByID(ID);
+    public Teacher selectTeacherByID(String ID) {
+        return teacherMapper.selectTeacherByID(ID);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
-    public List<Student> selectStudent(Student student, boolean sexCheck, int offset, int limit) {
+    public List<Teacher> selectTeacher(Teacher teacher, boolean sexCheck, int offset, int limit) {
         RowBounds rowBounds = new RowBounds(offset, limit);
-        return studentMapper.selectStudent(student, sexCheck, rowBounds);
+        return teacherMapper.selectTeacher(teacher, sexCheck, rowBounds);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
-    public int NumberOfStudent(Student student, boolean sexCheck) {
-        return studentMapper.numberOfStudent(student, sexCheck);
+    public int NumberOfTeacher(Teacher teacher, boolean sexCheck) {
+        return teacherMapper.numberOfTeacher(teacher, sexCheck);
     }
 }

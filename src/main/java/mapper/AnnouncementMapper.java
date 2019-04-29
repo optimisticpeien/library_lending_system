@@ -1,6 +1,6 @@
 package mapper;
 
-import bean.Announcement;
+import entity.Announcement;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 

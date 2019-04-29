@@ -22,6 +22,7 @@ public class OnlineUsers implements HttpSessionListener {
         sum++;
         se.getSession().setAttribute("userNumber", userNumber);
         se.getSession().setAttribute("sum", sum);
+//        System.out.println(se.getSession().toString());
     }
 
     @Override

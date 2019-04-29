@@ -1,6 +1,6 @@
-package service.impl;
+package serviceImpl;
 
-import bean.Announcement;
+import entity.Announcement;
 import mapper.AnnouncementMapper;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;

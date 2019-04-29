@@ -35,6 +35,4 @@
     <!-- 静态资源处理  css js imgs -->
     <mvc:resources location="/img/" mapping="/img/**"/>
     <mvc:resources location="/css/" mapping="/css/**"/>
-
-
 </beans>
