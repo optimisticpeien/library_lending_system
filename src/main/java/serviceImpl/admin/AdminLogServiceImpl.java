@@ -65,18 +65,32 @@ public class AdminLogServiceImpl implements AdminLogService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
-    public List<BorrowingBookInformation> borrowingRecord(String ID, int offset, int limit) {
+    public List<BorrowingBookInformation> borrowing(String ID, int offset, int limit) {
         List<BorrowingBookInformation> borrowing = borrowedBookMapper.select(ID);
-        borrowing.addAll(borrowingLogMapper.select(ID));
+//        borrowing.addAll(borrowingLogMapper.select(ID));
         int l = offset + limit > borrowing.size() ? borrowing.size() : offset + limit;
         return borrowing.subList(offset, l);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
-    public int NumberOfLog(String ID) {
+    public List<BorrowingBookInformation> borrowed(String ID, int offset, int limit) {
+        List<BorrowingBookInformation> borrowed = borrowingLogMapper.select(ID);
+        int l = offset + limit > borrowed.size() ? borrowed.size() : offset + limit;
+        return borrowed.subList(offset, l);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
+    public int NumberOfBorrowed(String ID) {
         int number = borrowedBookMapper.borrowNumber(ID);
-        number += borrowingLogMapper.borrowNumber(ID);
+        return number;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
+    public int NumberOfBorrowing(String ID) {
+        int number = borrowingLogMapper.borrowNumber(ID);
         return number;
     }
 }

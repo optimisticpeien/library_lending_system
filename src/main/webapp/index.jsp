@@ -56,13 +56,25 @@
                         <input type="text" name="ID" class="form-control" placeholder="账号"
                                aria-describedby="basic-addon1">
                         <div class="input-group-btn">
-                            <select name="identity" class="btn btn-default" id="logintitle1">
-                                <option value="student">学生</option>
-                                <option value="teacher">教师</option>
-                                <option value="admin">管理员</option>
-                            </select>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false"><span id="shenfen">学生</span><span
+                                    class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="javascript:void(0);" onclick="xuesheng()">学生</a></li>
+                                <li><a href="javascript:void(0);" onclick="jiaoshi()">教师</a></li>
+                                <li><a href="javascript:void(0);" onclick="guanliyuan()">管理员</a></li>
+                            </ul>
                         </div>
+                        <!-- /btn-group -->
+                        <%--                        <div class="input-group-btn">--%>
+                        <%--                            <select name="identity" class="btn btn-default" id="logintitle1">--%>
+                        <%--                                <option value="student">学生</option>--%>
+                        <%--                                <option value="teacher">教师</option>--%>
+                        <%--                                <option value="admin">管理员</option>--%>
+                        <%--                            </select>--%>
+                        <%--                        </div>--%>
                     </div>
+                    <input type="hidden" name="identity" value="student"/>
                     <br>
                     <div class="input-group">
                         <div class="input-group-addon" id="logintitle2"><i class="glyphicon glyphicon-lock"></i></div>
@@ -70,7 +82,7 @@
                                aria-describedby="basic-addon1">
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-success btn-block">登录</button>
+                    <button type="submit" class="btn btn-success btn-block" id="login">登录</button>
                 </form>
             </div>
         </div>
@@ -100,4 +112,20 @@
     </div>
 </div>
 </body>
+<script>
+    function xuesheng() {
+        $("input[name='identity']").attr("value", "student");
+        $("#shenfen").text("学生");
+    }
+
+    function jiaoshi() {
+        $("input[name='identity']").attr("value", "teacher");
+        $("#shenfen").text("教师");
+    }
+
+    function guanliyuan() {
+        $("input[name='identity']").attr("value", "admin");
+        $("#shenfen").text("管理员");
+    }
+</script>
 </html>

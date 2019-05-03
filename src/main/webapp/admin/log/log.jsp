@@ -123,7 +123,7 @@
                         </div>
                         <div class="form-group">
                             <label>分页大小</label>
-                            <input type="text" class="form-control" id="pageSize" placeholder="每页数据条数" value="10">
+                            <input type="text" class="form-control" id="pageSize" placeholder="每页数据条数" value="5">
                         </div>
                         <button type="button" id="select" class="btn btn-success btn-block">检索</button>
                     </form>
@@ -132,7 +132,7 @@
         </div>
         <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8 animated fadeInRight">
             <div class="panel panel-success">
-                <div class="panel-heading">借阅记录</div>
+                <div class="panel-heading">当前借阅</div>
                 <div class="panel-body">
                     <p id="logNum">请输入相关查询条件</p>
                 </div>
@@ -141,12 +141,34 @@
                 <nav aria-label="Page navigation" class="text-center">
                     <ul class="pagination" id="pagination">
                         <li class="disabled" id="previous">
-                            <a href="javascript:void(0);" onclick="pageJmp(-1)" aria-label="Previous">
+                            <a href="javascript:void(0);" onclick="pageJmp1(-1)" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
                         <li class="disabled" id="next">
-                            <a href="javascript:void(0);" onclick="pageJmp(-2)" aria-label="Next">
+                            <a href="javascript:void(0);" onclick="pageJmp1(-2)" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">借阅记录</div>
+                <div class="panel-body">
+                    <p id="logNuml">请输入相关查询条件</p>
+                </div>
+                <table class="table table-condensed" id="logTablel">
+                </table>
+                <nav aria-label="Page navigation" class="text-center">
+                    <ul class="pagination" id="paginationl">
+                        <li class="disabled" id="previousl">
+                            <a href="javascript:void(0);" onclick="pageJmp2(-1)" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="disabled" id="nextl">
+                            <a href="javascript:void(0);" onclick="pageJmp2(-2)" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
@@ -158,22 +180,32 @@
 </div>
 <script>
     let ID = "";            //查询ID
-    let limit = 8;          //分页大小
+    let limit = 5;          //分页大小
+
     let page = 1;           //当前页
     let logNumber = 0;    //数据条数
     let pageNumber = 0;     //总页数
     const pageLong = 5;       //分页栏长度-1
     let firstPage = 1;      //当前分页页首
     let lastPage = 6;       //当前分页页尾
+
+    let pagel = 1;           //当前页
+    let logNumberl = 0;    //数据条数
+    let pageNumberl = 0;     //总页数
+    const pageLongl = 5;       //分页栏长度-1
+    let firstPagel = 1;      //当前分页页首
+    let lastPagel = 6;       //当前分页页尾
+
     $(document).ready(function () {
         $("#select").click(function () {
             ID = $("#id").val();
             limit = $("#pageSize").val();
-            pageJmp(1);
+            pageJmp1(1);
+            pageJmp2(1);
         });
     });
 
-    function pageJmp(p) {
+    function pageJmp1(p) {
         if (p == -1) {
             if (page != 1)
                 page--;
@@ -183,7 +215,7 @@
         } else
             page = p - 0;
         $.post(
-            "logPage",
+            "borrowing",
             {"ID": ID, "page": page, "limit": limit},
             function (map) {
                 logNumber = map.borrowingNumber;
@@ -231,14 +263,85 @@
                     }
                     for (let i = firstPage; i <= lastPage; i++) {
                         if (i != page) {
-                            $("#next").before("<li class=\"pageNumber\"><a href=\"javascript:void(0);\" onclick=\"pageJmp(" + i + ")\">" + i + "</a></li>");
+                            $("#next").before("<li class=\"pageNumber\"><a href=\"javascript:void(0);\" onclick=\"pageJmp1(" + i + ")\">" + i + "</a></li>");
                         } else {
-                            $("#next").before("<li class=\"pageNumber active\"><a href=\"javascript:void(0);\" onclick=\"pageJmp(" + i + ")\">" + i + "</a></li>");
+                            $("#next").before("<li class=\"pageNumber active\"><a href=\"javascript:void(0);\" onclick=\"pageJmp1(" + i + ")\">" + i + "</a></li>");
                         }
                     }
                 } else {
                     $("#previous").addClass("disabled");
                     $("#next").addClass("disabled");
+                }
+            }
+        );
+    }
+
+    function pageJmp2(q) {
+        if (q == -1) {
+            if (pagel != 1)
+                pagel--;
+        } else if (q == -2) {
+            if (pagel != pageNumberl)
+                pagel++;
+        } else
+            pagel = q - 0;
+        $.post(
+            "borrowed",
+            {"ID": ID, "page": pagel, "limit": limit},
+            function (map) {
+                logNumberl = map.borrowedNumber;
+                pageNumberl = map.pageNumber;
+                lastPagel = firstPagel + pageLongl > pageNumberl ? pageNumberl : firstPagel + pageLongl;
+                $("#logNuml").html("共" + logNumberl + "条借阅记录");
+                $("#logTablel").empty();
+                const longl = logNumberl - (pagel - 1) * limit > limit ? limit : logNumberl - (pagel - 1) * limit;
+                for (let i = 0; i < longl; i++) {
+                    $("#logTablel").append("<tbody>\n" +
+                        "                    <tr class=\"borrowing info\">\n" +
+                        "                        <th>图书编号</th>\n" +
+                        "                        <td colspan=\"3\">" + map.borrowed[i].isbn + "</td>\n" +
+                        "                    </tr>\n" +
+                        "                    <tr class=\"borrowing\">\n" +
+                        "                        <th>书名</th>\n" +
+                        "                        <td colspan=\"3\">" + map.borrowed[i].name + "</td>\n" +
+                        "                    </tr>\n" +
+                        "                    <tr class=\"borrowing\">\n" +
+                        "                        <th>借阅时间</th>\n" +
+                        "                        <td>" + map.borrowed[i].borrowingDate + "</td>\n" +
+                        "                        <th>还书时间</th>\n" +
+                        "                        <td>" + map.borrowed[i].returnDate + "</td>\n" +
+                        "                    </tr>\n" +
+                        "                    </tbody>");
+                }
+                $(".pageNumberl").remove();
+                if (pageNumberl != 0) {
+                    if (pagel == 1) {
+                        $("#previousl").addClass("disabled");
+                    } else {
+                        $("#previousl").removeClass("disabled");
+                    }
+                    if (pagel == pageNumberl) {
+                        $("#nextl").addClass("disabled");
+                    } else {
+                        $("#nextl").removeClass("disabled");
+                    }
+                    if (pagel <= firstPagel && pagel != 1) {
+                        firstPagel -= pageLongl;
+                        lastPagel = firstPagel + pageLongl;
+                    } else if (pagel >= lastPagel && pagel != pageNumberl) {
+                        firstPagel += pageLongl;
+                        lastPagel = lastPagel + pageLongl > pageNumberl ? pageNumberl : lastPagel + pageLongl;
+                    }
+                    for (let i = firstPagel; i <= lastPagel; i++) {
+                        if (i != pagel) {
+                            $("#nextl").before("<li class=\"pageNumberl\"><a href=\"javascript:void(0);\" onclick=\"pageJmp2(" + i + ")\">" + i + "</a></li>");
+                        } else {
+                            $("#nextl").before("<li class=\"pageNumberl active\"><a href=\"javascript:void(0);\" onclick=\"pageJmp2(" + i + ")\">" + i + "</a></li>");
+                        }
+                    }
+                } else {
+                    $("#previousl").addClass("disabled");
+                    $("#nextl").addClass("disabled");
                 }
             }
         );

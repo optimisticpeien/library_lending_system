@@ -10,7 +10,11 @@ public interface AdminLogService {
 
     int NumberOfOverdue();
 
-    List<BorrowingBookInformation> borrowingRecord(String ID, int offset, int limit);
+    List<BorrowingBookInformation> borrowing(String ID, int offset, int limit);
 
-    int NumberOfLog(String ID);
+    List<BorrowingBookInformation> borrowed(String ID, int offset, int limit);
+
+    int NumberOfBorrowed(String ID);
+
+    int NumberOfBorrowing(String ID);
 }

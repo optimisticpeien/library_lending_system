@@ -39,7 +39,7 @@
                     <li><a href="adminReturn">还书续借</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">图书管理 <span class="caret"></span></a>
+                           aria-expanded="false">图书管理<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="book/select">查询图书</a></li>
                             <li role="separator" class="divider"></li>
@@ -118,12 +118,22 @@
             <div class="panel-body">
                 <form class="form-horizontal">
                     <div class="input-group">
+                        <%--                        <div class="input-group-btn">--%>
+                        <%--                            <select class="btn btn-default">--%>
+                        <%--                                <option value="student">学生</option>--%>
+                        <%--                                <option value="teacher">教师</option>--%>
+                        <%--                            </select>--%>
+                        <%--                        </div>--%>
                         <div class="input-group-btn">
-                            <select class="btn btn-default">
-                                <option value="student">学生</option>
-                                <option value="teacher">教师</option>
-                            </select>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false"><span id="shenfen">学生</span>&emsp;<span
+                                    class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:void(0);" onclick="xuesheng()">学生</a></li>
+                                <li><a href="javascript:void(0);" onclick="jiaoshi()">教师</a></li>
+                            </ul>
                         </div>
+                        <input type="hidden" id="identity" name="identity" value="student"/>
                         <input type="text" class="form-control" id="ID" placeholder="学生证号或教师工号"
                                aria-describedby="basic-addon1">
                         <span class="input-group-btn">
@@ -172,6 +182,16 @@
     </div>
 </div>
 <script type="text/javascript">
+    function xuesheng() {
+        $("input[name='identity']").attr("value", "student");
+        $("#shenfen").text("学生");
+    }
+
+    function jiaoshi() {
+        $("input[name='identity']").attr("value", "teacher");
+        $("#shenfen").text("教师");
+    }
+
     let ID;
     $(document).ready(function () {
         $("#select").click(function () {

@@ -132,6 +132,13 @@ public class AdminController {
                 map.put("modalTitle", "失败");
                 map.put("modalPoint", "此账户已借阅相关书籍，不可重复借阅！");
                 break;
+            case -7:
+                map.put("modalTitle", "失败");
+                map.put("modalPoint", "列表中有禁止借阅图书！");
+                break;
+            default:
+                map.put("modalTitle", "失败");
+                map.put("modalPoint", "未知错误！");
         }
         return map;
     }

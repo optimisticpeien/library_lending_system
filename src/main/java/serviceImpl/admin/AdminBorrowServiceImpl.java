@@ -51,6 +51,7 @@ public class AdminBorrowServiceImpl implements AdminBorrowService {
      * -4：超出可借本数
      * -5：超出剩余本数
      * -6：重复借书
+     * -7：不可借出图书
      */
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
@@ -68,6 +69,9 @@ public class AdminBorrowServiceImpl implements AdminBorrowService {
             }
             if (borrowedBookMapper.repeatedBorrowing(ID, isbn)) {
                 return -6;
+            }
+            if (!book.isBorrow()) {
+                return -7;
             }
         }
         Calendar calendar = Calendar.getInstance();

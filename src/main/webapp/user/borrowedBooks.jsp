@@ -119,7 +119,8 @@
                         </tr>
                         <%
                             List<BorrowingBookInformation> borrowedBooks = (List<BorrowingBookInformation>) session.getAttribute("borrowedBooks");
-                            int m = borrowedBooks.size() < 5 ? borrowedBooks.size() : 5;
+                            int m = borrowedBooks.size();
+//                                    < 5 ? borrowedBooks.size() : 5;
                             if (m == 0) {
                         %>
                         <tr>
@@ -161,8 +162,8 @@
                     </table>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 animated fadeInRight">
+            <%--        </div>--%>
+            <%--        <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 animated fadeInRight">--%>
             <div class="panel panel-success">
                 <div class="panel-heading">借阅记录</div>
                 <div class="panel-body">

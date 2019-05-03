@@ -201,7 +201,7 @@
                                 }
                             %>
                         </table>
-                        <div class="panel-footer"><a href="${pageContext.request.contextPath}/user/borrowedBooks">详情</a>
+                        <div class="panel-footer"><a href="${pageContext.request.contextPath}/user/books">更多</a>
                         </div>
                     </div>
                 </div>

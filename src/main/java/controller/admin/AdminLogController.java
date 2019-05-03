@@ -49,18 +49,50 @@ public class AdminLogController {
         return map;
     }
 
+    /**
+     * 借阅记录当前正在借阅部分
+     *
+     * @param ID
+     * @param page
+     * @param limit
+     * @return
+     */
     @ResponseBody
-    @RequestMapping("logPage")
-    public Map<String, Object> logPage(@RequestParam("ID") String ID,
-                                       @RequestParam("page") int page,
-                                       @RequestParam("limit") int limit) {
+    @RequestMapping("borrowing")
+    public Map<String, Object> borrowing(@RequestParam("ID") String ID,
+                                         @RequestParam("page") int page,
+                                         @RequestParam("limit") int limit) {
         int offset = (page - 1) * limit;
-        List<BorrowingBookInformation> borrowing = adminLogService.borrowingRecord(ID, offset, limit);
-        int borrowingNumber = adminLogService.NumberOfLog(ID);
+        List<BorrowingBookInformation> borrowing = adminLogService.borrowing(ID, offset, limit);
+        int borrowingNumber = adminLogService.NumberOfBorrowed(ID);
         int pageNumber = borrowingNumber % limit == 0 ? borrowingNumber / limit : borrowingNumber / limit + 1;
         Map<String, Object> map = new HashMap<>();
         map.put("borrowing", borrowing);
         map.put("borrowingNumber", borrowingNumber);
+        map.put("pageNumber", pageNumber);
+        return map;
+    }
+
+    /**
+     * 借阅记录曾经借阅部分
+     *
+     * @param ID
+     * @param page
+     * @param limit
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("borrowed")
+    public Map<String, Object> borrowed(@RequestParam("ID") String ID,
+                                        @RequestParam("page") int page,
+                                        @RequestParam("limit") int limit) {
+        int offset = (page - 1) * limit;
+        List<BorrowingBookInformation> borrowed = adminLogService.borrowed(ID, offset, limit);
+        int borrowedNumber = adminLogService.NumberOfBorrowing(ID);
+        int pageNumber = borrowedNumber % limit == 0 ? borrowedNumber / limit : borrowedNumber / limit + 1;
+        Map<String, Object> map = new HashMap<>();
+        map.put("borrowed", borrowed);
+        map.put("borrowedNumber", borrowedNumber);
         map.put("pageNumber", pageNumber);
         return map;
     }

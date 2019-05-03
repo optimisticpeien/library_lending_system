@@ -15,6 +15,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+    <style>
+        .table {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .first {
+            width: 16%;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -160,12 +170,12 @@
                 }
                 for (let i = 0; i < list.length; i++) {
                     $("table").append("<tr class=\"info\">\n" +
-                        "                            <th>ISBN</th>\n" +
+                        "                            <th class='first'>ISBN</th>\n" +
                         "                            <td class='isbn'>" + list[i].isbn + "</td>\n" +
                         "                            <td><label><input type=\"checkbox\" name=\"renew\">续借</label></td>\n" +
                         "                        </tr>\n" +
                         "                        <tr>\n" +
-                        "                            <th>书名</th>\n" +
+                        "                            <th class='first'>书名</th>\n" +
                         "                            <td colspan=\"2\">" + list[i].name + "</td>\n" +
                         "                        </tr>");
                 }
