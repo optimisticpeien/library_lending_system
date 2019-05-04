@@ -136,6 +136,10 @@ public class AdminController {
                 map.put("modalTitle", "失败");
                 map.put("modalPoint", "列表中有禁止借阅图书！");
                 break;
+            case -8:
+                map.put("modalTitle", "警告");
+                map.put("modalPoint", "没有填写任何图书！");
+                break;
             default:
                 map.put("modalTitle", "失败");
                 map.put("modalPoint", "未知错误！");

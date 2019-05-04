@@ -63,7 +63,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-sm-offset-2 col-md-offset-3  col-lg-offset-4 animated fadeInUp login">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-sm-offset-2 col-md-offset-3  col-lg-offset-4 animated bounceIn login">
         <div class="alert alert-danger" role="alert">
             <h4>成功！</h4>
             <p>${requestScope.success}</p>

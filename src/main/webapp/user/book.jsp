@@ -51,7 +51,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">关于<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu animated flipInX">
                             <li><a href="user">个人信息</a></li>
                             <li><a href="password">修改密码</a></li>
                             <li role="separator" class="divider"></li>

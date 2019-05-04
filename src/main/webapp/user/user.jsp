@@ -55,7 +55,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">关于<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu animated flipInX">
                             <li class="active"><a href="#">个人信息</a></li>
                             <li><a href="${pageContext.request.contextPath}/user/password">修改密码</a></li>
                             <li role="separator" class="divider"></li>
@@ -99,7 +99,7 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
-            <div class="panel panel-info animated fadeInLeft">
+            <div class="panel panel-info animated  flipInY">
                 <div class="panel-heading">个人信息</div>
                 <ul class="panel-body list-group">
                     <li class="list-group-item">${(sessionScope.identity=="student"?"学号:":"工号:").concat(sessionScope.user.ID)}</li>
@@ -111,9 +111,9 @@
                 </ul>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 animated fadeInRight">
+        <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 animated  flipInY">
                     <div class="panel panel-success">
                         <div class="panel-heading">已借书籍</div>
                         <table class="table table-condensed">
@@ -160,7 +160,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 animated  flipInY">
                     <div class="panel panel-danger">
                         <div class="panel-heading">新增书籍</div>
                         <table class="table table-condensed">

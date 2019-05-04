@@ -44,7 +44,7 @@
         </div>
     </nav>
 
-    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-sm-offset-2 col-md-offset-3  col-lg-offset-4 animated fadeInUp login">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-sm-offset-2 col-md-offset-3  col-lg-offset-4 animated zoomIn login">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">欢迎使用！</h3>
@@ -59,7 +59,7 @@
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false"><span id="shenfen">学生</span><span
                                     class="caret"></span></button>
-                            <ul class="dropdown-menu dropdown-menu-right">
+                            <ul class="dropdown-menu dropdown-menu-right animated flipInX">
                                 <li><a href="javascript:void(0);" onclick="xuesheng()">学生</a></li>
                                 <li><a href="javascript:void(0);" onclick="jiaoshi()">教师</a></li>
                                 <li><a href="javascript:void(0);" onclick="guanliyuan()">管理员</a></li>

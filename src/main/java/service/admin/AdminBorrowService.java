@@ -17,6 +17,8 @@ public interface AdminBorrowService {
      * -4：超出可借本数
      * -5：超出剩余本数
      * -6：重复借书
+     * -7：不可借出图书
+     * -8：没有任何图书ISBN
      */
     int borrowBook(String identity, String ID, String[] ISBNs);
 

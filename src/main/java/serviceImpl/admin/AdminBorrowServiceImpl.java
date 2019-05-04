@@ -52,6 +52,7 @@ public class AdminBorrowServiceImpl implements AdminBorrowService {
      * -5：超出剩余本数
      * -6：重复借书
      * -7：不可借出图书
+     * -8：没有任何图书ISBN
      */
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
@@ -95,6 +96,9 @@ public class AdminBorrowServiceImpl implements AdminBorrowService {
             }
             duration = 60;
 
+        }
+        if (ISBNs.length == 0) {
+            return -8;
         }
         calendar.add(Calendar.DAY_OF_YEAR, duration);
         Date returnDate = calendar.getTime();

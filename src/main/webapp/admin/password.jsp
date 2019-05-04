@@ -40,7 +40,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">图书管理 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu animated flipInX">
                             <li><a href="book/select">查询图书</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="book/add">增加图书</a></li>
@@ -50,7 +50,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">人员管理<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu animated flipInX">
                             <li><a href="student/select">学生查询</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="student/add">增加学生</a></li>
@@ -65,7 +65,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">记录<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu animated flipInX">
                             <li><a href="log/overdue">超期信息</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="log/log">借阅日志</a></li>
@@ -76,9 +76,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">关于<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu animated flipInX">
                             <li><a href="admin">个人信息</a></li>
-                            <li><a href="password">修改密码</a></li>
+                            <li class="active"><a href="password">修改密码</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="" data-toggle="modal" data-target="#myModal">关于</a></li>
                             <li><a href="exit">退出</a></li>
@@ -112,7 +112,7 @@
         </div>
     </div>
 
-    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-sm-offset-2 col-md-offset-3  col-lg-offset-4 animated fadeInUp login">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-sm-offset-2 col-md-offset-3  col-lg-offset-4 animated zoomIn login">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">修改密码</h3>

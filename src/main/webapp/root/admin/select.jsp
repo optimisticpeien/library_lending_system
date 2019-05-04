@@ -38,7 +38,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">公告<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu animated flipInX">
                             <li><a href="../announcement/select">公告记录</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="../announcement/add">增加公告</a></li>
@@ -48,7 +48,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">管理员管理<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu animated flipInX">
                             <li class="active"><a href="#">查询管理员</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="add">增加管理员</a></li>
@@ -60,7 +60,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">关于<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu animated flipInX">
                             <li><a href="../root">个人信息</a></li>
                             <li><a href="../password">修改密码</a></li>
                             <li role="separator" class="divider"></li>
@@ -126,11 +126,10 @@
                 <div class="panel-body">
                     <p id="adminNum"></p>
                 </div>
-                <table class="table" id="adminsTable">
+                <table class="table" id="adminsTable" style="cursor:pointer">
                     <tr id="adminTitle">
                         <th>管理员号</th>
                         <th>管理员名</th>
-                        <th>变更</th>
                     </tr>
                 </table>
                 <nav aria-label="Page navigation" class="text-center">
@@ -192,9 +191,8 @@
                 const long = adminNumber - (page - 1) * limit > limit ? limit : adminNumber - (page - 1) * limit;
                 for (let i = 0; i < long; i++) {
                     $("#adminsTable").append("<tr class=\"admins\">\n" +
-                        "                        <td>" + map.admins[i].id + "</td>\n" +
-                        "                        <td>" + map.admins[i].name + "</td>\n" +
-                        "                        <td><a href=\"change?id=" + map.admins[i].id + "\">变更</a></td>\n" +
+                        "                        <td><a href=\"change?id=" + map.admins[i].id + "\">" + map.admins[i].id + "</a></td>\n" +
+                        "                        <td><a href=\"change?id=" + map.admins[i].id + "\">" + map.admins[i].name + "</a></td>\n" +
                         "                    </tr>");
                 }
                 $(".pageNumber").remove();

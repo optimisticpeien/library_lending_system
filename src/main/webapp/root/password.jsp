@@ -38,7 +38,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">公告<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu animated flipInX">
                             <li><a href="announcement/select">公告记录</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="announcement/add">增加公告</a></li>
@@ -48,7 +48,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">管理员管理<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu animated flipInX">
                             <li><a href="admin/select">查询管理员</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="admin/add">增加管理员</a></li>
@@ -60,7 +60,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">关于<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu animated flipInX">
                             <li><a href="root">个人信息</a></li>
                             <li class="active"><a href="#">修改密码</a></li>
                             <li role="separator" class="divider"></li>
@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-sm-offset-2 col-md-offset-3  col-lg-offset-4 animated fadeInUp login">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-sm-offset-2 col-md-offset-3  col-lg-offset-4 animated zoomIn login">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">修改密码</h3>

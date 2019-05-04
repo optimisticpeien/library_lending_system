@@ -35,21 +35,21 @@ public class LoginController {
             modelAndView.addObject("user", map.get("user"));
             modelAndView.addObject("borrowedBooks", map.get("borrowedBooks"));
             modelAndView.addObject("books", map.get("books"));
-            modelAndView.setViewName("redirect:user/user");
+            modelAndView.setViewName("user/user");
         } else if (map.get("identity").equals("admin")) {
             modelAndView.addObject("user", map.get("user"));
             modelAndView.addObject("adminNumber", map.get("adminNumber"));
             modelAndView.addObject("teacherNumber", map.get("teacherNumber"));
             modelAndView.addObject("studentNumber", map.get("studentNumber"));
             modelAndView.addObject("lastDate", new Date());
-            modelAndView.setViewName("redirect:admin/admin");
+            modelAndView.setViewName("admin/admin");
         } else if (map.get("identity").equals("root")) {
             modelAndView.addObject("user", map.get("user"));
             modelAndView.addObject("adminNumber", map.get("adminNumber"));
             modelAndView.addObject("teacherNumber", map.get("teacherNumber"));
             modelAndView.addObject("studentNumber", map.get("studentNumber"));
             modelAndView.addObject("lastDate", new Date());
-            modelAndView.setViewName("redirect:root/root");
+            modelAndView.setViewName("root/root");
         } else if (map.get("identity").equals("error")) {
             modelAndView.addObject("error", map.get("error"));
             modelAndView.addObject("back", "index");
